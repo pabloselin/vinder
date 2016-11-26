@@ -1,0 +1,40 @@
+{
+    "id": "4bf01d6b1824e796686a1379",
+    "impressions": [
+        {
+            "appearance": {
+                "glasses": 2
+            },
+            "average_emotion": {
+                "anger": 1.855,
+                "disgust": 100,
+                "fear": 2,
+                "joy": 0.182,
+                "sadness": 2,
+                "surprise": 1.568
+            },
+            "demographics": {
+                "age_group": 0.013841661474053,
+                "gender": 2
+            },
+            "duration": 0,
+            "emotion_score": {
+                "negative": 10.43,
+                "neutral": 0.23,
+                "positive": 89.04
+            },
+            "id": "0",
+            "tracking": {
+                "attention": 0,
+                "dwell": 0,
+                "glances": 1
+            }
+        }
+    ],
+    "media_info": {
+        "filename": "4bf01d6b1824e796686a1379.flv",
+        "length": 12,
+        "mime_type": "video/flv",
+        "type": "video"
+    }
+}

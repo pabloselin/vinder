@@ -1,0 +1,28 @@
+{
+  "name": "vinder",
+  "homepage": "https://github.com/pabloselin/vinder",
+  "authors": [
+    "Pablo Selín Carrasco Armijo <pabloselin@gmail.com>"
+  ],
+  "description": "Matchmaking with emotion detection",
+  "main": "index.html",
+  "keywords": [
+    "kairos",
+    "match",
+    "love"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "angular": "bower-angular#^1.5.9",
+    "angular-resource": "1.5.x",
+    "angular-route": "1.5.x"
+  }
+}
