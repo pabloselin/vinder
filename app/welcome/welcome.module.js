@@ -2,7 +2,8 @@ angular.
 	module('vinderApp').
 	component('welcomeUser',  {
 		templateUrl: 'app/welcome/welcome.template.html',
-		controller: function welcomeUserController($http) {
+		controller: function welcomeController($http) {
+			
 			var self = this;
 			self.user = 'service';
 

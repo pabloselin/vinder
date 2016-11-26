@@ -5765,3 +5765,9 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+.person-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
