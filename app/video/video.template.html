@@ -1,0 +1,53 @@
+<!-- HEADERS@APPLICANT/TESTS/VIDEO/STEP_5 -->
+<link rel="stylesheet" type="text/css" href="/common/css/tests/video.css">
+<!-- Ziggeo video recorder -->
+<link rel="stylesheet" href="//assets-cdn.ziggeo.com/v1-stable/ziggeo.css"/>
+<link rel="stylesheet" href="/assets/css/main.css"/>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Video</h1>			                
+            <div class="row">
+                <div class="col-xs-7 ziggeo-div">            
+                    <ziggeo ziggeo-id="grabador"
+                            ziggeo-title="Titulo"
+                            ziggeo-disable_snapshots="true"
+                            ziggeo-disable_timer="true"
+                            ziggeo-hide_rerecord_on_snapshots="true"
+                            ziggeo-modes="recorder"
+                            ziggeo-countdown=0
+                            ziggeo-limit=20
+                            ziggeo-tags="tag1, tag2, tag3"                    
+                            ziggeo-responsive="true">
+                    </ziggeo>
+                </div>            
+                <div class="col-xs-5">
+                    <div class="instruction-div">
+                        <ul class="instructions" id="questions">                    
+                                <li class="instruction-title"><b>Contesta las siguientes preguntas:</b></li>                    
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i>Pregunta 1</li>
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i>Pregunta 2</li>
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i>Pregunta 3</li>                    
+                        </ul>                
+                        <ul class="instructions">
+                            <li class="instruction-title"><b>Recuerda que tienes <b>1 MINUTO</b> para contestar las preguntas.</b></li>
+                        </ul>                
+                    </div>
+                    
+                    <div class="">
+                        <div class="" id="status_container">
+                            <span class="" id="status">Esperando autorización de cámara</span>
+                        </div>
+                    </div>            
+                </div>            
+            </div>    
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="//assets-cdn.ziggeo.com/v1-stable/ziggeo.js" type="text/javascript"></script>
+<script src="./video.js" type="text/javascript"></script>
+<script type="text/javascript" src="/bower_components/jquery.countdown/dist/jquery.countdown.min.js"></script>
+
