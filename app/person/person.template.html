@@ -1,3 +1,18 @@
-<div ng-repeat="person in persons">
-	{{ person.name }}
+<div class="container">
+	<div class="row">
+		<div>
+			<ul ng-repeat="person in $ctrl.persons">
+				
+				<li class="col-md-4 person-item" data-id="{{person.id}}">
+					<img ng-src="{{person.thumbnail}}" alt="{{person.name}}">
+					
+					<h3 class="person-name">
+						<a href="persons/{{person.id}}">{{ person.name }}</a>
+					</h3>
+					
+				</li>
+
+			</ul>
+		</div>
+	</div>
 </div>

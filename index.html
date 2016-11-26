@@ -6,15 +6,16 @@
 		<script src="bower_components/angular-resource/angular-resource.js"></script>
 		<script src="bower_components/angular-route/angular-route.js"></script>
 		<script src="app/config.js"></script>
-		<script src="app/app.js"></script>
+		<script src="app/app.config.js"></script>
 		<script src="app/welcome/welcome.module.js"></script>
 		<script src="app/person/person.module.js"></script>
+		<script src="app/person-detail/person-detail.module.js"></script>
+		<script src="app/person-detail/person-detail.component.js"></script>
+		
 	</head>
 	<body>
-		
-		<welcome-user></welcome-user>
 
-		<person></person>
+		<div ng-view></div>
 
 	</body>
 </html>
