@@ -26,59 +26,11 @@
 		</header>
 
 		<div ng-view></div>
-
+    
 	<!-- Scripts para Ziggeo -->
 	<script src="//assets-cdn.ziggeo.com/v1-stable/ziggeo.js" type="text/javascript"></script>
 	<script type="text/javascript" src="bower_components/jquery.countdown/dist/jquery.countdown.min.js"></script>
 	<script src="assets/js/video.js"></script>
-	<script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
     
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
-    <!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
-    <script src="https://cdn.WebRTC-Experiment.com/gumadapter.js"></script>
-
-    <!-- custom libraries -->
-    <script src="assets/js/testdata.js"></script>
-    <script src="assets/js/MediaStreamRecorder.js"></script>
-    <script src="assets/js/featurePoints.js"></script>
-    <script src="assets/js/emoDemoApp.js"></script>
-    <script src="assets/js/featurePointAnimation.js"></script>
-    <script src="assets/js/highchartsApp.js"></script>
-    <script src="assets/js/highchartsAppPhoto.js"></script>
-    <script src="assets/js/videoPlayer.js"></script>
-    <script src="assets/js/emotionUi.js"></script>    
-  
-    <script>        
-        var highchartsColors = [["#22B573"],["#1175E3"],["#FB623E"],["#DA0059"],["#752673"],["#FBB03B"]];
-        var mediaPath = "https://media.kairos.com/demo/emotion/";
-        var uploadFileSizeImage = 10000000;
-        var uploadFileTypesImage = [["image/gif"],["image/png"],["image/jpeg"],["image/jpg"]];
-        var uploadFileSizeVideo = 50000000;
-        var uploadFileTypesEmotion = [["video/mp4"],["video/x-flv"],["video/webm"],["video/quicktime"],["video/mov"],["image/png"],["image/jpeg"],["image/jpg"],["application/octet-stream"],["image/x-ms-bmp"]];
-        var apiTimeout = "30";
-        var pollTimeout = "120000";        
-
-        var demoMedia  = {
-            "video_1" : "44fb1c0d285d5dac2aa92830",            
-        }                                            
-
-        emoDemoApp.init({
-            "uploadFileTypesEmotion": uploadFileTypesEmotion,
-            "uploadFileSizeVideo": uploadFileSizeVideo,
-            "pollTimeout": pollTimeout,
-            "mediaPath": mediaPath,
-            "demoMedia": demoMedia,
-            "apiCredentials": true
-        });
-        videoPlayer.init();
-        highchartsApp.init({
-            "colors": highchartsColors,
-        });
-        highchartsAppPhoto.init({
-            "colors": highchartsColors, 
-        });
-    </script>
 	</body>
 </html>

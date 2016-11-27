@@ -9,7 +9,7 @@ var vinderApp = angular.
 					config(['$locationProvider', '$routeProvider', 
 						function config($locationProvider, $routeProvider, $http, User) {
 
-							$locationProvider.hashPrefix('!');
+							$locationProvider.hashPrefix('');
 
 							$routeProvider.
 							
@@ -63,16 +63,9 @@ var vinderApp = angular.
 								}
 							}).
 
-							when('/video-analysis', {
-								templateUrl: 'app/video-analysis/video-analysis.template.html',
-								controller: function( $scope, $routeParams) {
-									
-								}
-							}).
-
 							when('/match', {
 								templateUrl: 'app/match/match.template.html',
-								controller: ['$scope', '$routeParams' ,function( $scope, $routeParams) {
+								controller: ['$http', '$scope', '$routeParams' ,function( $http, $scope, $routeParams) {
 
 										this.user = {};
 										
