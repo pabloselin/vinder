@@ -31,14 +31,19 @@ var vinderApp = angular.
 								}
 							}).
 
-							when('/persons', {
+							when('/person', {
 								//templateUrl: 'app/person/person.template.html',
-								template: 'persons'
+								template: 'person'
 								
 							}).
 
 							when('/persons/:personId', {
-								template: 'personsId'
+								//template: 'personsId'
+								templateUrl: 'app/person-detail/person-detail.template.html',
+								controller: function( $scope, $routeParams){
+									$scope.personId = $routeParams.personId;
+									
+								}
 							}).
 							
 							otherwise({redirectTo: '/welcome'});

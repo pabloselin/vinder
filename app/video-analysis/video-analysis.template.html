@@ -62,7 +62,25 @@
                 <div class="json-response"><pre></pre></div>
             </div>
         </div>
-        
+        <div class="row ui-buttons">
+            <div class="webcam col-md-6">
+                <button class="webcam-button btn btn-kairos">WEBCAM</button>
+            </div>
+            <div class="upload col-md-6">
+                <form method="post" enctype="multipart/form-data" id="mediaUploadForm"> 
+                    <div class="upload-button btn btn-kairos">UPLOAD<input type="file" id="upload" name="upload"></div>
+                </form>
+                <div class="upload-error"></div>
+            </div>
+            <div class="url col-md-8">
+                <input type="text" class="url-from-web" autofocus="autofocus" value="URL from the web" />
+                <div class="url-error"></div>
+            </div>
+            <div class="submit col-md-4">
+                <button class="submit-button btn btn-kairos">SUBMIT</button>
+            </div>
+            <div class="ui-buttons-mask"></div>
+        </div>
     </div>  
 
     <script id="video-container-template" type="text/x-handlebars-template">
@@ -123,9 +141,9 @@
     <script>        
         var highchartsColors = [["#22B573"],["#1175E3"],["#FB623E"],["#DA0059"],["#752673"],["#FBB03B"]];
         var mediaPath = "https://media.kairos.com/demo/emotion/";
-        var uploadFileSizeImage = "10000000";
+        var uploadFileSizeImage = 10000000;
         var uploadFileTypesImage = [["image/gif"],["image/png"],["image/jpeg"],["image/jpg"]];
-        var uploadFileSizeVideo = "50000000";
+        var uploadFileSizeVideo = 50000000;
         var uploadFileTypesEmotion = [["video/mp4"],["video/x-flv"],["video/webm"],["video/quicktime"],["video/mov"],["image/png"],["image/jpeg"],["image/jpg"],["application/octet-stream"],["image/x-ms-bmp"]];
         var apiTimeout = "30";
         var pollTimeout = "120000";        

@@ -1,5 +1,5 @@
 angular.
-	module('vinderApp').
+	module('person').
 	component('person',  {
 		templateUrl: 'app/person/person.template.html',
 		controller: function personController($http) {
