@@ -397,6 +397,7 @@ emoDemoApp =  {
             $('.show-image')
                 .attr("src","")
                 .css({"width":0,"height":0});
+            var urlMediaSrc = "https://media.kairos.com/demo/emotion/videos/video_1.mp4";
                         
             self.processing = true; 
             self.initPostProcessingLayout = false;
@@ -404,98 +405,11 @@ emoDemoApp =  {
             self.resetElements();
             self.getTemplate("video-container-template","","Uploading...",true, false);
             self.getTemplate("highcharts-template","","Please Wait",false, false);
-            var data = {};
-            data.fname = "url";
+                                          
             
-            $.ajax({
-                type: "POST",
-                url: "http://vinderapi.azurewebsites.net/api/analyzer",
-                data: {url : "https://media.kairos.com/demo/emotion/videos/video_1.mp4"},
-                dataType: "text"
-            }).done(function(data) {
-                var response = JSON.parse(data);
+            var mediaType = "video";            
+            self.pollApi(mediaId, "url", mediaType);                       
                 
-                self.mimeType = "video/mp4";
-               
-                self.fileSize = response.fileSize;
-                self.fileData = response.fileData;
-                self.showUploadedVideo = false;
-                // if video type is HTML5 compatible,
-                // show video on response
-                if (self.mimeType == "video/mp4" || self.mimeType == "video/webm") {
-                    self.showUploadedVideo = true;
-                }
-                var fileTypeAllowed = false;
-                var fileTypeList = [];
-                $(self.config.uploadFileTypesEmotion).each(function(idx, fileType) {
-                    fileTypeList.push(" ." + fileType.toString().split("/")[1])
-                    if(fileType == self.mimeType) { 
-                        fileTypeAllowed = true;
-                    }
-                }); 
-                var fileSizeAllowed = false;
-                if(self.fileSize <= self.config.uploadFileSizeVideo) { 
-                    fileSizeAllowed = true;
-                }
-                if (!fileTypeAllowed) {
-                    self.processing = false;
-                    self.getTemplate("video-container-template","","",false,true);
-                    var filetypeMsg = "Wrong file type.  Must be" + fileTypeList;
-                    self.getTemplate("highcharts-template","Error",filetypeMsg,false,false);
-                }
-                else if (!fileSizeAllowed) {
-                    self.processing = false; 
-                    self.resetElements();
-                    self.getTemplate("video-container-template","","",false,true);
-                    var filesizeMsg = "File size is too large.  Must be less than or equal to " + self.config.uploadFileSizeVideo/1000000 + "MB";
-                    self.getTemplate("highcharts-template","Error",filesizeMsg,false,false);
-                    return false;
-                }
-                else {
-                    if(self.showUploadedVideo) {
-                        $(".video-wrapper").show();
-                        $(".video-controls").show()
-                        $('#video').attr('src', "data:" + self.mimeType + ";base64," + response.fileData);
-                    }
-                    var data = {};
-                    data.fname = "url";
-                    data.url = urlMediaSrc;
-                    $.ajax({
-                        type: 'POST',
-                        url: 'process.php',
-                        data: data,
-                        dataType: 'text',
-                        timeout  : self.config.pollTimeout
-                    }).done(function(data) {
-                        if(self.validateJson(data)){
-                            var mediaId = JSON.parse(data).id;
-                            if (self.mimeType == "image/png" || self.mimeType == "image/jpeg") {
-                                var mediaType = "image";
-                            }
-                            else {
-                                var mediaType = "video";
-                            }
-                            var img = new Image();
-                            var imageData;
-                            imageData = "data:" + self.mimeType + ";base64," + self.fileData;
-                            img.src = imageData;
-                            img.onload = function(){
-                                newImageSize = self.calculateAspectRatioFit(img.width,img.height,self.viewportWidth,self.viewportHeight);
-                                $('.show-image')
-                                    .attr("src", imageData)
-                                    .css("z-index",1)
-                                    .css(newImageSize)
-                            }
-                            self.pollApi(mediaId, "url", mediaType);
-                        }
-                        else {
-                            self.resetElements();
-                            self.getTemplate("video-container-template","","",false, true);
-                            self.getTemplate("highcharts-template","Error","Invalid JSON response...",false, false);
-                        }
-                    });
-                }
-            });
             
         });
     },
@@ -509,6 +423,7 @@ emoDemoApp =  {
     //      "status_code": 4,  "status_message": "Complete"
     //------------------------------------
     pollApi: function (mediaId, module, mediaType) {
+        console.log("fifoidf");
         var self = this;
         if (mediaType == "video") {
             self.getTemplate("video-container-template","","Processing video...",true, false);
@@ -529,19 +444,19 @@ emoDemoApp =  {
         fd["fname"] = "polling";
         fd["mediaId"] = mediaId;
         var getApiResponse = function () {
-       //      $.ajax({
-       //         type: 'POST',
-       //         url: 'process.php',
-       //         data: fd,
-       //         dataType: 'text'
-       //     }).done(function(data){
-       //         var response = data;
              $.ajax({
-                 url: 'http://127.0.0.1:8080/', // fake the AJAX call                         
-                 type: 'get',
-             }).done(function(data) {
-                 self.currData = testData;
-                 response = JSON.stringify(testData);
+                type: 'GET',
+                url: "http://vinderapi.azurewebsites.net/api/analyzer",
+                data: 22,
+                dataType: 'text'
+            }).done(function(data){
+                var response = data;
+       //      $.ajax({
+       //          url: 'http://127.0.0.1:8080/', // fake the AJAX call                         
+       //          type: 'get',
+       //      }).done(function(data) {
+       //          self.currData = testData;
+       //          response = JSON.stringify(testData);
                 
                 if(self.validateJson(response)){
                     if (JSON.parse(response).status_code == "3") {

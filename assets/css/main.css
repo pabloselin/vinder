@@ -5,6 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+@import url("//assets-cdn.ziggeo.com/v1-stable/ziggeo.css");
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -5771,3 +5772,6 @@ button.close {
   margin: 0;
   padding: 0;
   text-align: center; }
+
+.welcome-div {
+  padding: 12px; }

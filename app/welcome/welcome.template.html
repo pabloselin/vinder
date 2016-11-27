@@ -1,18 +1,23 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-12">
-			<h1>Vinder Matchmaking {{$ctrl.user}}</h1>
+		<div class="col-md-8 col-md-2 col-md-offset-2">
+			<h1><i class="fa fa-meh-o"></i> <i class="fa fa-frown-o"></i> <i class="fa fa-smile-o"></i> Vinder Matchmaking</h1>
 			<div class="well">
-				<h2>TÚ / YOU</h2>
-				<ul>
-					<li>Anger: {{$ctrl.anger}}</li>
-					<li>Disgust: {{$ctrl.disgust}}</li>
-					<li>Fear: {{$ctrl.fear}}</li>
-					<li>Joy: {{$ctrl.joy}}</li>
-					<li>Sadness: {{$ctrl.sadness}}</li>
-					<li>Surprise: {{$ctrl.surprise}}</li>
-				</ul>
+				
+				<h1>Hola, ¿cúal es tu nombre?</h1>
+
+				<form action="" class="form">
+					<input type="text" id="name" class="form-control" ng-model="user.name">
+				
+				
+				<p></p>
+
+				<p>
+					<input type="submit" class="btn btn-lg btn-info" id="comenzar" ng-click="createUser(user)" value="Comenzar">
+				</p>
+
+				</form>
 
 			</div>
 		</div>
