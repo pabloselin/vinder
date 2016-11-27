@@ -23,6 +23,7 @@
     "bootstrap-sass": "^3.3.7",
     "angular": "bower-angular#^1.5.9",
     "angular-resource": "1.5.x",
-    "angular-route": "1.5.x"
+    "angular-route": "1.5.x",
+    "jquery.countdown": "^2.2.0"
   }
 }

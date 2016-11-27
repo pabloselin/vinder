@@ -1,0 +1,64 @@
+<div class="container">
+    
+	<div class="row">
+		<div class="col-md-12">
+			<h1>Video para {{user.name}}</h1>			                
+            <div class="row">
+                <div class="col-xs-6 ziggeo-div">            
+                    <ziggeo ziggeo-id="grabador"
+                            ziggeo-title="Titulo"
+                            ziggeo-disable_snapshots="true"
+                            ziggeo-disable_timer="true"
+                            ziggeo-hide_rerecord_on_snapshots="true"
+                            ziggeo-modes="recorder"
+                            ziggeo-countdown=0
+                            ziggeo-limit=20
+                            ziggeo-tags="tag1, tag2, tag3"                    
+                            ziggeo-responsive="true">
+                    </ziggeo>
+                </div>            
+                <div class="col-xs-6">
+                    
+                    <div class="welcome-div">
+                        <h1><i class="fa fa-meh-o"></i> <i class="fa fa-frown-o"></i> <i class="fa fa-smile-o"></i> Vinder Matchmaking</h1>
+                        
+
+                            <h1>Hola, ¿cúal es tu nombre?</h1>
+
+                            <form action="" class="form">
+                                <input type="text" id="name" class="form-control" ng-model="user.name">
+
+
+                                <p></p>
+
+                                <p>
+                                    <input type="submit" class="btn btn-lg btn-info" id="comenzar" ng-click="createUser(user)" value="Comenzar">
+                                </p>
+
+                            </form>
+
+                        
+                    </div>
+
+                    <div class="instruction-div">
+                        <ul class="instructions" id="questions">                    
+                                <li class="instruction-title"><b>Prepárate para contestar las siguientes preguntas, dedícale 20 segundos a responder cada una, se utilizará en el análisis de tus emociones:</b></li>                    
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i> ¿Cómo te has sentido la última semana? </li>
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i> Cuéntame la última película o capítulo de serie que viste </li>
+                                <li><i class="fa fa-question-circle" aria-hidden="true"></i> Cuéntame un momento de tu infancia </li>                    
+                        </ul>                
+                        <ul class="instructions">
+                            <li class="instruction-title"><b>Recuerda que tienes <b>1 MINUTO</b> para contestar las preguntas.</b></li>
+                        </ul>                
+                    </div>
+                    
+                    <div class="">
+                        <div class="" id="status_container">
+                            <span class="" id="status">Esperando autorización de cámara</span>
+                        </div>
+                    </div>            
+                </div>            
+            </div>    
+		</div>
+	</div>
+</div>

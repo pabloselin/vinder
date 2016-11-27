@@ -3,8 +3,11 @@ var vinderApp = angular.
 						'ngRoute',
 						'personDetail'
 						]).
+					factory('User', function() {
+						return{ name: {} };
+					}).
 					config(['$locationProvider', '$routeProvider', 
-						function config($locationProvider, $routeProvider, $http) {
+						function config($locationProvider, $routeProvider, $http, User) {
 
 							$locationProvider.hashPrefix('!');
 
@@ -12,41 +15,73 @@ var vinderApp = angular.
 							
 							when('/welcome', {
 								templateUrl: 'app/welcome/welcome.template.html',
-								controller: [ '$http', '$scope', function welcomeController($http, $scope) {
-			
+								controller: [ '$http', '$scope', '$location', function welcomeController($http, $scope, $location, User) {
 										
-										$scope.user = 'service';
+										$scope.user = {};
 
-										$http.get(vinderDataUrl).then(function(response) {
-
-											console.log(response.data.impressions[0].average_emotion.anger);
+										$scope.user.name = User;
+										
+										$scope.createUser = function (user) {
 											
-											$scope.data = response.data;
-											$scope.anger = response.data.impressions[0].average_emotion.anger;
-											$scope.disgust = response.data.impressions[0].average_emotion.disgust;
-											$scope.fear = response.data.impressions[0].average_emotion.fear;
-											$scope.joy = response.data.impressions[0].average_emotion.joy;
-											$scope.sadness = response.data.impressions[0].average_emotion.sadness;
-											$scope.surprise = response.data.impressions[0].average_emotion.surprise;
+											console.log(user.name);
 
-											console.log($scope.anger);
-											
-										});
+											$scope.user.name = user.name;
+
+ 											$location.path('/video');
+
+										}
+										
+										
 
 									}]
 							}).
 
+							when('/video', {
+								templateUrl: 'app/video/video.template.html',
+								controller: [ '$http', '$scope', function videoController($http, $scope, User) {
+									
+									$scope.createUser = function (user) {
+											
+											console.log(user.name);
+
+											$scope.user.name = user.name;
+
+										}
+
+
+
+								}]
+							}).
 
 							when('/persons/:personId', {
 								//template: 'personsId'
 								templateUrl: 'app/person-detail/person-detail.template.html',
 								controller: function( $scope, $routeParams){
 									$scope.personId = $routeParams.personId;
+									console.log($scope.user);
 									
 								}
 							}).
 							
-							otherwise({redirectTo: '/welcome'});
+							otherwise({redirectTo: '/video'});
 						}
 						]);
+
+vinderApp.factory('dataService', function() {
+	
+	var userData = {};
+
+	function set(data) {
+		userData = data;
+	}
+
+	function get() {
+		return userData;
+	}
+
+	return {
+		set: set,
+		get: get
+	}
+});
 
