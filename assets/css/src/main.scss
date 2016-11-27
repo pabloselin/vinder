@@ -45,10 +45,14 @@ div#status_container {
 .my-heart {
 	color:red;
 	text-align:center;
+	i {
+		display:block;
+		margin-top:24px;
+	}
 }
 
 .person-with-emotions {
-	
+
 	img {
 		max-width:100%;
 	}
