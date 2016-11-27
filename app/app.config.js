@@ -12,12 +12,16 @@ var vinderApp = angular.
 							
 							when('/welcome', {
 								templateUrl: 'app/welcome/welcome.template.html',
-								controller: function welcomeController($http) {
+								controller: ['$routeParams', function welcomeController($http) {
 			
 										var self = this;
 										self.user = 'service';
 
+
 										$http.get(vinderDataUrl).then(function(response) {
+
+											console.log(self.anger);
+
 											self.data = response.data;
 											self.anger = response.data.impressions[0].average_emotion.anger;
 											self.disgust = response.data.impressions[0].average_emotion.disgust;
@@ -28,7 +32,8 @@ var vinderApp = angular.
 											
 										});
 
-								}
+									}
+								]
 							}).
 
 							when('/persons', {
