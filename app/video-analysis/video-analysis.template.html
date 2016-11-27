@@ -1,0 +1,157 @@
+<html>
+<html lang="en">
+
+<head>
+    <title>Kairos Detect Demo</title>   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/fonts.css">
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/emotion.css">
+</head>
+<body>
+    <div class="main-container container">
+        <div class="row">
+            <div class="col-md-6 main-video-container">
+                <div class="video-wrapper">
+                    <video id="video" width="100%" mediaId="video_1" src="https://media.kairos.com/demo/emotion/videos/video_1.mp4" muted></video>
+                    <div class="video-controls">
+                        <a href="/" class="play" id="play-pause"></a>
+                        <div id="progress">  
+                            <div id="progress-holder">  
+                                <div id="progress-bar">
+                                    <span id="progress-scrubber"></span> 
+                                </div>
+                            </div>  
+                        </div> 
+                        <div id="progress-time">00.00</div>
+                    </div>
+                    <div class="canvas-container"><canvas id="displayCanvas" /></div>
+                </div>
+                <div class="webcam-video-container">
+                    <div class="face-overlay"></div>
+                    <div class="webcam-counter"></div>
+                </div>
+                <img class="show-image" src="">
+                <div class="template-background"></div>
+                <div class="video-container-template"></div>
+            </div>
+            <div class="col-md-6 highcharts-container">
+                <a href="" class="show-json">SHOW JSON</a>
+                <div class="autoscale-checkbox"><input type="checkbox" id="autoscale" /> Autoscale</div>
+                <div class="featurepoints-checkbox"><input type="checkbox" id="featurepoints" checked /> Featurepoints</div>
+                <div class="highcharts-wrapper">
+                    <div id="highcharts-curtain-wrapper">
+                        <div id="highcharts-curtain">
+                            <div class="gridlines"></div>
+                            <div class="gridlines"></div>
+                            <div class="gridlines"></div>
+                            <div class="gridlines"></div>
+                            <div class="gridlines"></div>
+                            <div class="gridlines"></div>
+                        </div>
+                    </div>
+                    <div id="highcharts-titles"></div>
+                    <div id="highcharts-containers"></div>
+                </div>
+                <div id="highcharts-container-image"></div>
+                <div class="highcharts-template"></div>
+            </div>
+            <div class="col-md-6 json-response-container">
+                <a href="" class="hide-json">HIDE JSON</a>
+                <button class="copy-json-button btn btn-primary" data-clipboard-action="copy" data-clipboard-target=".json-response">COPY</button>
+                <div class="json-response"><pre></pre></div>
+            </div>
+        </div>
+        
+    </div>  
+
+    <script id="video-container-template" type="text/x-handlebars-template">
+        <div class="spinner-message-container">
+            {{#if spinner}}
+              <div class="processing-spinner"></div>
+            {{/if}}
+            {{#if sadFace}}
+              <div class="sad-face"></div>
+            {{/if}}
+            <div class="message-container strong">{{message1}}</div>
+            <div class="message-container">{{message2}}</div>
+        </div>
+    </script>
+    <script id="highcharts-template" type="text/x-handlebars-template">
+        <div class="spinner-message-container">
+            {{#if spinner}}
+              <div class="processing-spinner-transparent"></div>
+            {{/if}}
+            {{#if sadFace}}
+              <div class="sad-face"></div>
+            {{/if}}
+            <div class="message-container strong">{{message1}}</div>
+            <div class="message-container">{{message2}}</div>
+        </div>
+        <div class="response-box-container">
+        {{#if gender}}
+            <div class="response-box-gender"></div>
+        {{/if}}
+        {{#if age}}
+            <div class="response-box-age"></div>
+        {{/if}}
+        </div>
+    </script>
+            
+
+    <!-- hosted libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
+    <!-- for Edige/FF/Chrome/Opera/etc. getUserMedia support -->
+    <script src="https://cdn.WebRTC-Experiment.com/gumadapter.js"></script>
+
+    <!-- custom libraries -->
+    <script src="js/testdata.js"></script>
+    <script src="js/MediaStreamRecorder.js"></script>
+    <script src="js/featurePoints.js"></script>
+    <script src="js/emoDemoApp.js"></script>
+    <script src="js/featurePointAnimation.js"></script>
+    <script src="js/highchartsApp.js"></script>
+    <script src="js/highchartsAppPhoto.js"></script>
+    <script src="js/videoPlayer.js"></script>
+    <script src="js/emotionUi.js"></script>    
+  
+    <script>        
+        var highchartsColors = [["#22B573"],["#1175E3"],["#FB623E"],["#DA0059"],["#752673"],["#FBB03B"]];
+        var mediaPath = "https://media.kairos.com/demo/emotion/";
+        var uploadFileSizeImage = "10000000";
+        var uploadFileTypesImage = [["image/gif"],["image/png"],["image/jpeg"],["image/jpg"]];
+        var uploadFileSizeVideo = "50000000";
+        var uploadFileTypesEmotion = [["video/mp4"],["video/x-flv"],["video/webm"],["video/quicktime"],["video/mov"],["image/png"],["image/jpeg"],["image/jpg"],["application/octet-stream"],["image/x-ms-bmp"]];
+        var apiTimeout = "30";
+        var pollTimeout = "120000";        
+
+        var demoMedia  = {
+            "video_1" : "44fb1c0d285d5dac2aa92830",            
+        }                                            
+
+        emoDemoApp.init({
+            "uploadFileTypesEmotion": uploadFileTypesEmotion,
+            "uploadFileSizeVideo": uploadFileSizeVideo,
+            "pollTimeout": pollTimeout,
+            "mediaPath": mediaPath,
+            "demoMedia": demoMedia,
+            "apiCredentials": true
+        });
+        videoPlayer.init();
+        highchartsApp.init({
+            "colors": highchartsColors,
+        });
+        highchartsAppPhoto.init({
+            "colors": highchartsColors, 
+        });
+    </script>
+
+</body>
+
+</html>
+
