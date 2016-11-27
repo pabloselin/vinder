@@ -4,7 +4,7 @@ var vinderApp = angular.
 						'personDetail'
 						]).
 					config(['$locationProvider', '$routeProvider', 
-						function config($locationProvider, $routeProvider) {
+						function config($locationProvider, $routeProvider, $http) {
 
 							$locationProvider.hashPrefix('!');
 
@@ -12,38 +12,38 @@ var vinderApp = angular.
 							
 							when('/welcome', {
 								templateUrl: 'app/welcome/welcome.template.html',
-								controller: ['$routeParams', function welcomeController($http) {
+								controller: [ '$http', '$scope', function welcomeController($http, $scope) {
 			
-										var self = this;
-										self.user = 'service';
-
+										
+										$scope.user = 'service';
 
 										$http.get(vinderDataUrl).then(function(response) {
 
-											console.log(self.anger);
+											console.log(response.data.impressions[0].average_emotion.anger);
+											
+											$scope.data = response.data;
+											$scope.anger = response.data.impressions[0].average_emotion.anger;
+											$scope.disgust = response.data.impressions[0].average_emotion.disgust;
+											$scope.fear = response.data.impressions[0].average_emotion.fear;
+											$scope.joy = response.data.impressions[0].average_emotion.joy;
+											$scope.sadness = response.data.impressions[0].average_emotion.sadness;
+											$scope.surprise = response.data.impressions[0].average_emotion.surprise;
 
-											self.data = response.data;
-											self.anger = response.data.impressions[0].average_emotion.anger;
-											self.disgust = response.data.impressions[0].average_emotion.disgust;
-											self.fear = response.data.impressions[0].average_emotion.fear;
-											self.joy = response.data.impressions[0].average_emotion.joy;
-											self.sadness = response.data.impressions[0].average_emotion.sadness;
-											self.surprise = response.data.impressions[0].average_emotion.surprise;
+											console.log($scope.anger);
 											
 										});
 
-									}
-								]
+									}]
 							}).
 
-							when('/persons', {
-								//templateUrl: 'app/person/person.template.html',
-								template: 'persons'
-								
-							}).
 
 							when('/persons/:personId', {
-								template: 'personsId'
+								//template: 'personsId'
+								templateUrl: 'app/person-detail/person-detail.template.html',
+								controller: function( $scope, $routeParams){
+									$scope.personId = $routeParams.personId;
+									
+								}
 							}).
 							
 							otherwise({redirectTo: '/welcome'});
