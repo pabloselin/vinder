@@ -62,6 +62,28 @@ var vinderApp = angular.
 									
 								}
 							}).
+
+							when('/video-analysis', {
+								templateUrl: 'app/video-analysis/video-analysis.template.html',
+								controller: function( $scope, $routeParams) {
+									
+								}
+							}).
+
+							when('/match', {
+								templateUrl: 'app/match/match.template.html',
+								controller: ['$scope', '$routeParams' ,function( $scope, $routeParams) {
+
+										this.user = {};
+										
+										this.user.thumbnail = 'test.jpg';
+										this.user.match = 'zorg.jpg';
+
+										console.log(this.user.thumbnail);
+
+
+								}]
+							}).
 							
 							otherwise({redirectTo: '/video'});
 						}

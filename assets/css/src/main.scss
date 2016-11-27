@@ -1,7 +1,16 @@
 
 
 @import 'custom-bootstrap.scss';
+@import 'emotion.scss';
+@import 'animate.scss';
 @import url('//assets-cdn.ziggeo.com/v1-stable/ziggeo.css');
+
+
+
+header#main-header {
+	background-color:#333;
+	color:white;
+}
 
 .person-item {
 	list-style:none;
@@ -11,5 +20,36 @@
 }
 
 .welcome-div {
+	margin:24px;
 	padding:12px;
+}
+
+ul.instructions {
+	li {
+		list-style:none;
+		vertical-align:middle;
+		margin-bottom:6px;
+		i {
+			font-size:24px;
+		}
+	}
+}
+
+div#status_container {
+	padding:12px;
+	margin:24px;
+	background-color:#5B9798;
+	text-align:right;
+}
+
+.my-heart {
+	color:red;
+	text-align:center;
+}
+
+.person-with-emotions {
+	
+	img {
+		max-width:100%;
+	}
 }
